@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3tmp1amtjwfp"]
+
+[ext_resource type="Script" uid="uid://rod3q7mvplyj" path="res://scripts/ball.gd" id="1_cxlvu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sgp6g"]
+
+[node name="Ball" type="CharacterBody3D"]
+script = ExtResource("1_cxlvu")
+
+[node name="BallMeshInst" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+layers = 2
+skeleton = NodePath("../..")
+
+[node name="BallColl" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sgp6g")
+
+[node name="BallLight" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_caster_mask = 4294967293
+omni_range = 2.5

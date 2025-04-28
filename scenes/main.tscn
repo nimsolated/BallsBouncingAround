@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://det4kbk7phe4q"]
+
+[ext_resource type="Script" uid="uid://bcltpj151um7d" path="res://scripts/balls_container_node.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c3tmp1amtjwfp" path="res://scenes/ball.tscn" id="1_o5qli"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
+albedo_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+material = SubResource("StandardMaterial3D_o5qli")
+size = Vector3(0.5, 10, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0wfyh"]
+data = PackedVector3Array(-0.25, 5, 1, 0.25, 5, 1, -0.25, -5, 1, 0.25, 5, 1, 0.25, -5, 1, -0.25, -5, 1, 0.25, 5, -1, -0.25, 5, -1, 0.25, -5, -1, -0.25, 5, -1, -0.25, -5, -1, 0.25, -5, -1, 0.25, 5, 1, 0.25, 5, -1, 0.25, -5, 1, 0.25, 5, -1, 0.25, -5, -1, 0.25, -5, 1, -0.25, 5, -1, -0.25, 5, 1, -0.25, -5, -1, -0.25, 5, 1, -0.25, -5, 1, -0.25, -5, -1, 0.25, 5, 1, -0.25, 5, 1, 0.25, 5, -1, -0.25, 5, 1, -0.25, 5, -1, 0.25, 5, -1, -0.25, -5, 1, 0.25, -5, 1, -0.25, -5, -1, 0.25, -5, 1, 0.25, -5, -1, -0.25, -5, -1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0wfyh"]
+material = SubResource("StandardMaterial3D_0wfyh")
+size = Vector3(10, 10, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sugp2"]
+data = PackedVector3Array(-5, 5, 0.25, 5, 5, 0.25, -5, -5, 0.25, 5, 5, 0.25, 5, -5, 0.25, -5, -5, 0.25, 5, 5, -0.25, -5, 5, -0.25, 5, -5, -0.25, -5, 5, -0.25, -5, -5, -0.25, 5, -5, -0.25, 5, 5, 0.25, 5, 5, -0.25, 5, -5, 0.25, 5, 5, -0.25, 5, -5, -0.25, 5, -5, 0.25, -5, 5, -0.25, -5, 5, 0.25, -5, -5, -0.25, -5, 5, 0.25, -5, -5, 0.25, -5, -5, -0.25, 5, 5, 0.25, -5, 5, 0.25, 5, 5, -0.25, -5, 5, 0.25, -5, 5, -0.25, 5, 5, -0.25, -5, -5, 0.25, 5, -5, 0.25, -5, -5, -0.25, 5, -5, 0.25, 5, -5, -0.25, -5, -5, -0.25)
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 2.0
+
+[node name="Main" type="Node"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="LeftWall" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/LeftWall"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/LeftWall"]
+shape = SubResource("ConcavePolygonShape3D_0wfyh")
+
+[node name="RightWall" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RightWall"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RightWall"]
+shape = SubResource("ConcavePolygonShape3D_0wfyh")
+
+[node name="Ceiling" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.18557e-07, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ceiling"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ceiling"]
+shape = SubResource("ConcavePolygonShape3D_0wfyh")
+
+[node name="Floor" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.18557e-07, -5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Floor"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Floor"]
+shape = SubResource("ConcavePolygonShape3D_0wfyh")
+
+[node name="BackgroundWall" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/BackgroundWall"]
+mesh = SubResource("BoxMesh_0wfyh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/BackgroundWall"]
+shape = SubResource("ConcavePolygonShape3D_sugp2")
+
+[node name="Balls" type="Node" parent="Node3D"]
+script = ExtResource("1_0wfyh")
+
+[node name="Ball1" parent="Node3D/Balls" instance=ExtResource("1_o5qli")]
+color = Color(1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+environment = SubResource("Environment_o5qli")
+current = true
